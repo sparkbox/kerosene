@@ -3,10 +3,10 @@
 # Dockerfile which sets up the latest Sparkbox Developer instance.
 #
 # Build an image
-# `docker build --rm=true -t flint:base - < Dockerfile`
+# `docker build --rm=true -t tinder:latest - < Dockerfile`
 #
 # Example startup
-# `docker run -ti -v ~/projects:/projects flint:latest /bin/bash`
+# `docker run -ti -v ~/projects:/projects sparkbox/tinder:latest`
 ###################### 
 
 FROM ubuntu:latest
@@ -39,14 +39,15 @@ USER sparkuser
 RUN /bin/bash -l -c "rvm install 2.1"
 RUN /bin/bash -l -c "echo 'gem: --no-ri --no-rdoc' > ~/.gemrc"
 RUN /bin/bash -l -c "gem install bundler --no-ri --no-rdoc"
-USER root
 
 ###################### 
 # NODE
 ###################### 
+USER root
 RUN /bin/bash -l -c "curl -sL https://deb.nodesource.com/setup | bash -"
 RUN apt-get install -y nodejs
 
+USER sparkuser
 ONBUILD ENV USER sparkuser
 ONBUILD RUN /bin/bash -l -c "source /home/$USER/.rvm/scripts/rvm"
 
