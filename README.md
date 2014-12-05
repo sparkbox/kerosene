@@ -2,7 +2,7 @@
 
 Tinder is an attempt to create reliable, quick, transient environments for [Sparkbox][seesparkbox] projects using [Docker][docker].
 
-## What's in Tinder
+## What's in Tinder?
 The diffinitive source of Tinder is the [Dockerfile](./Dockerfile), but here's the gist:
 
 * Git
@@ -10,7 +10,7 @@ The diffinitive source of Tinder is the [Dockerfile](./Dockerfile), but here's t
 * Ruby
 * Nodejs
 
-## How it works
+## How Tinder works?
 When this repository changes, an automated build on [Docker Hub][tinderhub].
 This automated build produces a publically accessible docker image that you can
 pull and run:
