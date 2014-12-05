@@ -16,14 +16,33 @@ MAINTAINER Ryan Cromwell <ryan@heysparkbox.com>
 ######################
 # Ubuntu Packages
 ######################
-RUN apt-get update
-RUN apt-get upgrade -y
-RUN apt-get install -y curl git patch gawk g++ gcc make libc6-dev patch libreadline6-dev zlib1g-dev libssl-dev libyaml-dev libsqlite3-dev sqlite3 autoconf libgdbm-dev libncurses5-dev automake libtool bison pkg-config libffi-dev
+RUN apt-get update && \
+  apt-get upgrade -y && \
+  apt-get install -y curl wget git patch gawk g++ gcc make libc6-dev patch libreadline6-dev zlib1g-dev libssl-dev libyaml-dev libsqlite3-dev sqlite3 autoconf libgdbm-dev libncurses5-dev automake libtool bison pkg-config libffi-dev python
 
 ######################
 # Sparkuser
 ######################
 RUN useradd -ms /bin/bash sparkuser
+
+######################
+# NODE
+######################
+WORKDIR /tmp
+RUN \
+  wget http://nodejs.org/dist/node-latest.tar.gz && \
+  tar xvzf node-latest.tar.gz && \
+  rm -f node-latest.tar.gz && \
+  cd node-v* && \
+  ./configure && \
+  CXX="g++ -Wno-unused-local-typedefs" make && \
+  CXX="g++ -Wno-unused-local-typedefs" make install && \
+  cd /tmp && \
+  rm -rf /tmp/node-v* && \
+  npm install -g npm
+WORKDIR /
+
+RUN npm install -g coffee-script bower grunt-cli gulp
 
 ######################
 # RVM
@@ -40,14 +59,6 @@ RUN /bin/bash -l -c "rvm install 2.1"
 RUN /bin/bash -l -c "echo 'gem: --no-ri --no-rdoc' > ~/.gemrc"
 RUN /bin/bash -l -c "gem install bundler --no-ri --no-rdoc"
 
-######################
-# NODE
-######################
-USER root
-RUN /bin/bash -l -c "curl -sL https://deb.nodesource.com/setup | bash -"
-RUN apt-get install -y nodejs
-
-USER sparkuser
 CMD /bin/bash -l
 
 ######################
@@ -58,8 +69,4 @@ CMD /bin/bash -l
 # postgres
 # solr
 # redis
-# bower
-# grunt
-# coffee-script
-# divshot
 # zsh
