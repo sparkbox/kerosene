@@ -48,8 +48,7 @@ RUN /bin/bash -l -c "curl -sL https://deb.nodesource.com/setup | bash -"
 RUN apt-get install -y nodejs
 
 USER sparkuser
-ONBUILD ENV USER sparkuser
-ONBUILD RUN /bin/bash -l -c "source /home/$USER/.rvm/scripts/rvm"
+CMD /bin/bash -l
 
 ######################
 # TODO
