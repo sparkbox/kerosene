@@ -18,7 +18,32 @@ MAINTAINER Ryan Cromwell <ryan@heysparkbox.com>
 ######################
 RUN apt-get update && \
   apt-get upgrade -y && \
-  apt-get install -y curl wget git patch gawk g++ gcc make libc6-dev patch libreadline6-dev zlib1g-dev libssl-dev libyaml-dev libsqlite3-dev sqlite3 autoconf libgdbm-dev libncurses5-dev automake libtool bison pkg-config libffi-dev python
+  apt-get install -y \
+  curl \
+  wget \
+  git \
+  patch \
+  gawk \
+  g++ \
+  gcc \
+  make \
+  libc6-dev \
+  patch \
+  libreadline6-dev \
+  zlib1g-dev \
+  libssl-dev \
+  libyaml-dev \
+  libsqlite3-dev \
+  sqlite3 \
+  autoconf \
+  libgdbm-dev \
+  libncurses5-dev \
+  automake \
+  libtool \
+  bison \
+  pkg-config \
+  libffi-dev \
+  python
 
 ######################
 # Sparkuser
