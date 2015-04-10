@@ -43,7 +43,9 @@ RUN apt-get update && \
   bison \
   pkg-config \
   libffi-dev \
-  python
+  python \
+  libfreetype6 \
+  libfontconfig
 
 ######################
 # Sparkuser
