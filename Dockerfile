@@ -9,7 +9,7 @@
 # `docker run -ti -v ~/projects:/projects sparkbox/tinder:latest`
 ######################
 
-FROM ubuntu:latest
+FROM ubuntu:trusty
 
 MAINTAINER Ryan Cromwell <ryan@heysparkbox.com>
 
